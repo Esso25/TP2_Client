@@ -1,12 +1,14 @@
 package com.chat.echecs;
 
+import observer.Observable;
+
 /**
  *
  * @author Abdelmoumène Toudeft (Abdelmoumene.Toudeft@etsmtl.ca)
  * @version 1.0
  * @since 2023-10-01
  */
-public class EtatPartieEchecs {
+public class EtatPartieEchecs extends Observable {
     private char[][] etatEchiquier = new char[8][8];
     public EtatPartieEchecs() {
         //Les pions :

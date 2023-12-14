@@ -3,6 +3,7 @@ package vue;
 import com.chat.client.ClientChat;
 import controleur.EcouteurChatPrive;
 import controleur.EcouteurChatPublic;
+import controleur.EcouteurEvenementAction;
 import controleur.EcouteurListeConnectes;
 
 import javax.swing.*;
@@ -37,7 +38,11 @@ public class PanneauPrincipal  extends JPanel {
         panneauChatPublic.setEcouteur(ecouteurChatPublic);
 
         panneauInvitations = new PanneauInvitations();
-
+        
+        EcouteurEvenementAction ecouteurEvenement= new EcouteurEvenementAction(clientChat, panneauInvitations);
+        panneauInvitations.setEcouteur(ecouteurEvenement);
+        
+        
         panneauxPrives = new HashMap<>();
 
         connectes = new DefaultListModel<>();
@@ -100,7 +105,7 @@ public class PanneauPrincipal  extends JPanel {
         PanneauChatPrive pc = new PanneauChatPrive();
         this.retirerInvitationRecue(alias);
 
-        pc.setEcouteur(new EcouteurChatPrive(alias,this.clientChat,pc));
+        pc.setEcouteur(new EcouteurChatPrive(alias,this.clientChat,panneauChatPublic));
 
         panneauxPrives.put(alias,pc);
 
@@ -114,7 +119,18 @@ public class PanneauPrincipal  extends JPanel {
     public void ajouterMessagePrive(String alias, String msg) {
         String message = alias+">>"+msg;
         System.out.println("PRIVÉ : "+alias+">>"+msg);
-        //à compléter
+        
+        PanneauChatPrive panneauChatPrive = panneauxPrives.get(alias);
+
+        if (panneauxPrives.containsKey(alias)) {
+
+            panneauChatPrive.ajouter(message);
+        } 
+        else {
+        	creerFenetreSalonPrive(alias);
+            panneauChatPrive.ajouter(message);
+            
+        }
     }
 
     public void inviteEchecs(String alias) {

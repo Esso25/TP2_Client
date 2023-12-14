@@ -18,7 +18,7 @@ public class PanneauChat extends JPanel {
     public PanneauChat() {
     	JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout() );
-		zoneChat = new JTextArea(47,28);
+		zoneChat = new JTextArea(38,28);
 		zoneChat.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
 		champDeSaisie = new JTextField();	
 		panel.add(BorderLayout.SOUTH, champDeSaisie);

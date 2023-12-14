@@ -12,18 +12,28 @@ import java.awt.*;
 public class PanneauConfigServeur extends JPanel {
     private JTextField txtAdrServeur, txtNumPort;
     private JPanel panel;
+    
 
     public PanneauConfigServeur(String adr, int port) {
-
+    	
     	txtAdrServeur = new JTextField(adr);
+        txtAdrServeur.setColumns(10);
     	txtNumPort = new JTextField(String.valueOf(port));
-        panel=new JPanel();
+        txtNumPort.setColumns(10);
+        
+    	panel=new JPanel();
+		panel.setLayout(new BorderLayout() );
 
-        panel.add(new JLabel("Adresse IP:"));
-		panel.add(txtAdrServeur);
-        panel.add(new JLabel("Port:"));
-		panel.add(txtNumPort);
+		JPanel adressePanel = new JPanel(new BorderLayout());
+	    adressePanel.add(new JLabel("Adresse IP:"), BorderLayout.WEST);
+	    adressePanel.add(txtAdrServeur, BorderLayout.EAST);
 
+	    JPanel portPanel = new JPanel(new BorderLayout());
+	    portPanel.add(new JLabel("          	 Port:"), BorderLayout.WEST);
+	    portPanel.add(txtNumPort, BorderLayout.EAST);
+
+	    panel.add(adressePanel, BorderLayout.NORTH);
+	    panel.add(portPanel, BorderLayout.SOUTH);
 		
     }
     public JPanel getPanel() {

@@ -16,12 +16,23 @@ import java.awt.event.MouseListener;
 public class EcouteurListeConnectes extends MouseAdapter {
 
     private ClientChat clientChat;
+    private JList<String> jlConnectes;
+
     public EcouteurListeConnectes(ClientChat clientChat) {
         this.clientChat = clientChat;
     }
 
     @Override
     public void mouseClicked(MouseEvent evt) {
-        //à compléter
+    	if (evt.getClickCount() == 2) { 
+            jlConnectes = (JList) evt.getSource();
+            int index = jlConnectes.locationToIndex(evt.getPoint());
+
+            if (index != -1) { 
+                String alias = (String) jlConnectes.getModel().getElementAt(index);
+
+                clientChat.envoyer("JOIN " + alias);
+            }
+        }
     }
 }
