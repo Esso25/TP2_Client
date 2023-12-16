@@ -17,11 +17,12 @@ import java.awt.event.ActionListener;
  */
 public class EcouteurChatPrive extends EcouteurChatPublic implements ActionListener{
     private String alias;
-    private PanneauChatPrive panneauChatPrive; 
-    public EcouteurChatPrive(String alias, ClientChat clientChat, PanneauChat panneauChat) {
+    private PanneauChatPrive panneauChatPrive;
+
+    public EcouteurChatPrive(String alias, ClientChat clientChat, PanneauChat panneauChat,PanneauChatPrive panneauChatPrive) {
         super(clientChat, panneauChat);
         this.alias = alias;
-        
+        this.panneauChatPrive= panneauChatPrive;
     }
     
 	
@@ -30,8 +31,8 @@ public class EcouteurChatPrive extends EcouteurChatPublic implements ActionListe
         Object source = evt.getSource();
 
         if (source instanceof JButton) {
-            JButton buttonClicked = (JButton) source;
-            String text = buttonClicked.getText();
+            JButton btnChoix = (JButton) source;
+            String text = btnChoix.getText();
 
             switch (text) {
             	case "Inviter échec":
@@ -42,30 +43,31 @@ public class EcouteurChatPrive extends EcouteurChatPublic implements ActionListe
                     break;
                 case "Refuser":
                     clientChat.envoyer("DECLINE");
-		            panneauChatPrive.invitationEchecAnnulee();
+                    panneauChatPrive.invitationEchecAnnulee();
 
                     break;
                 default:
                     break;
             }
         } 
-        else if (source instanceof JTextField && source == panneauChat.getChampDeSaisie()) {
+        else if (source instanceof JTextField) {
+        	
             JTextField textField = (JTextField) source;
             String msgText = textField.getText();
 
             switch (msgText) {
                 case "QUIT":
                     clientChat.envoyer("QUIT");
-
+                    textField.setText("");
                     break;
                 case "ABANDON":
                     clientChat.envoyer("ABANDON");
+                    textField.setText("");
 
                     break;
                 default:
-                	clientChat.envoyer("PRV " +alias+" "+ msgText); 
-                   // panneauChatPrive.ajouter(msgText);
-                    textField.setText("");
+                     	clientChat.envoyer("PRV " +alias+" "+ msgText); 
+                        textField.setText("");
             
                     break;
             }

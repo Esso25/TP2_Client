@@ -105,7 +105,7 @@ public class PanneauPrincipal  extends JPanel {
         PanneauChatPrive pc = new PanneauChatPrive();
         this.retirerInvitationRecue(alias);
 
-        pc.setEcouteur(new EcouteurChatPrive(alias,this.clientChat,panneauChatPublic));
+        pc.setEcouteur(new EcouteurChatPrive(alias,this.clientChat,panneauChatPublic,pc));
 
         panneauxPrives.put(alias,pc);
 
@@ -122,14 +122,12 @@ public class PanneauPrincipal  extends JPanel {
         
         PanneauChatPrive panneauChatPrive = panneauxPrives.get(alias);
 
-        if (panneauxPrives.containsKey(alias)) {
-
+        
+        if (panneauChatPrive != null) {
             panneauChatPrive.ajouter(message);
-        } 
-        else {
-        	creerFenetreSalonPrive(alias);
+        } else {
+            creerFenetreSalonPrive(alias);
             panneauChatPrive.ajouter(message);
-            
         }
     }
 

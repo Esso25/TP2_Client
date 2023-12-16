@@ -12,12 +12,10 @@ import java.awt.event.ActionListener;
  */
 public class PanneauChatPrive extends PanneauChat {
     private JButton bAccepterOuInviter, bRefuser;
-    private PanneauChat pc;
     private FenetreEchecs fenetreEchecs;
 
     public PanneauChatPrive() {
     	super();
-    	pc=new PanneauChat();
     	 setLayout(new BorderLayout());
          JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
          
@@ -27,29 +25,16 @@ public class PanneauChatPrive extends PanneauChat {
         bRefuser.setActionCommand("REFUSER");
         
         btnPanel.add(bAccepterOuInviter); 
-        btnPanel.add(bRefuser); 
-        this.add(pc,BorderLayout.SOUTH);
-        this.add(btnPanel, BorderLayout.NORTH); 
+        btnPanel.add(bRefuser);
         
+        this.add(btnPanel,BorderLayout.NORTH);
+        this.add(zoneChat,BorderLayout.CENTER);        
+        this.add(champDeSaisie,BorderLayout.SOUTH);        
 
         bAccepterOuInviter.setVisible(true);
         bRefuser.setVisible(false);
-		/*
-		 * super(); 
-		 * 
-		 * JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		 * bAccepterOuInviter = new JButton("Inviter échec"); bRefuser = new
-		 * JButton("Refuser");
-		 * 
-		 * bAccepterOuInviter.setActionCommand("ACCEPTER");
-		 * bRefuser.setActionCommand("REFUSER");
-		 * 
-		 * btnPanel.add(bAccepterOuInviter); btnPanel.add(bRefuser);
-		 * 
-		 * this.add(btnPanel, BorderLayout.NORTH);
-		 * 
-		 * bAccepterOuInviter.setVisible(true); bRefuser.setVisible(false);
-		 */
+        
+		
         
     }
     @Override
