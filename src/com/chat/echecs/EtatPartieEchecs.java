@@ -50,8 +50,15 @@ public class EtatPartieEchecs extends Observable {
     }
     public boolean move(String deplacement) {
         boolean res = false;
-        //à compléter
+        String[] coordonneEchec = deplacement.split("-");
+        String depart = coordonneEchec[0];
+        String destination = coordonneEchec[1];
 
+        // Valider le déplacement
+		/*
+		  if (deplace(depart, destination)) {
+		  res = true; }
+		 */
         return res;
     }
 
@@ -76,5 +83,8 @@ public class EtatPartieEchecs extends Observable {
 
     public void setEtatEchiquier(char[][] etatEchiquier) {
         this.etatEchiquier = etatEchiquier;
+        notifierObservateurs(); 
+
     }
+    
 }

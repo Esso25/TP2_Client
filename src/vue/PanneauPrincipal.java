@@ -4,6 +4,7 @@ import com.chat.client.ClientChat;
 import controleur.EcouteurChatPrive;
 import controleur.EcouteurChatPublic;
 import controleur.EcouteurEvenementAction;
+import controleur.EcouteurJeuEchecs;
 import controleur.EcouteurListeConnectes;
 
 import javax.swing.*;
@@ -25,6 +26,7 @@ public class PanneauPrincipal  extends JPanel {
     private JList<String> jlConnectes;
     private PanneauChat panneauChatPublic;
     private PanneauInvitations panneauInvitations;
+    private FenetreEchecs fenetreEchecs;
     private JDesktopPane bureau;
     private Map<String, PanneauChatPrive> panneauxPrives;
 
@@ -36,12 +38,12 @@ public class PanneauPrincipal  extends JPanel {
 
         EcouteurChatPublic ecouteurChatPublic = new EcouteurChatPublic(clientChat, panneauChatPublic);
         panneauChatPublic.setEcouteur(ecouteurChatPublic);
-
         panneauInvitations = new PanneauInvitations();
         
         EcouteurEvenementAction ecouteurEvenement= new EcouteurEvenementAction(clientChat, panneauInvitations);
         panneauInvitations.setEcouteur(ecouteurEvenement);
         
+      
         
         panneauxPrives = new HashMap<>();
 

@@ -40,6 +40,8 @@ public class EcouteurChatPrive extends EcouteurChatPublic implements ActionListe
             		break;
                 case "Accepter":
                     clientChat.envoyer("CHESS");
+                    panneauChatPrive.invitationEchecAnnulee();
+
                     break;
                 case "Refuser":
                     clientChat.envoyer("DECLINE");

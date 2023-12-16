@@ -152,8 +152,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     System.out.println("Partie d'échecs démarrée avec "+arg+". Votre couleur est : "+str);
                     System.out.println(client.getEtatPartieEchecs());
                     PanneauEchiquier panneauEchiquier = new PanneauEchiquier(client.getEtatPartieEchecs());
-                    //à compléter
-
+                    
                     panneauPrincipal.setFenetreEchecs(arg,fenetreEchecs);
                     break;
                 case "INVALID":
@@ -165,8 +164,12 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     etat = ((ClientChat)client).getEtatPartieEchecs();
                     arg = evenement.getArgument();
                     if (etat.move(arg)) {
+                    	PanneauEchiquier panneauEchiquier2 = new PanneauEchiquier(etat);
+						panneauEchiquier2.seMettreAJour(etat);
                         System.out.println(etat);
                     }
+                    
+                    
                     break;
                 case "ABANDON":
                     arg = evenement.getArgument();
